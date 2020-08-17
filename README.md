@@ -3,13 +3,16 @@
 
 ## users テーブル
 
-| Column     | Type    | Options     |
-| --------   | ------  | ----------- |
-| nickname   | string  | null: false |
-| email      | string  | null: false |
-| password   | string  | null: false |
-| name       | string  | null: false |
-| birth_date | integer | null: false |
+| Column               | Type   | Options     |
+| -------------------- | ------ | ----------- |
+| nickname             | string | null: false |
+| email                | string | null: false |
+| password             | string | null: false |
+| family_name          | string | null: false |
+| first_name           | string | null: false |
+| family_name_FURIGANA | string | null: false |
+| first_name_FURIGANA  | string | null: false |
+| birth_date           | date   | null: false |
 
 ### Association
 
@@ -18,15 +21,20 @@
 
 ## items テーブル
 
-| Column   | Type       | Options     |
-| -------- | ---------  | ----------- |
-| users_id | references | null: false, foreign_key: true |
-| name     | string     | null: false |
-| image    | string     | null: false |
-| text     | string     | null: false |
-| price    | integer    | null: false |
-| delivery | string     | null: false |
-| comments | string     | null: false |
+| Column          | Type       | Options     |
+| --------------- | ---------  | ----------- |
+| users           | references | null: false, foreign_key: true |
+| name            | string     | null: false |
+| image           | string     | null: false |
+| text            | string     | null: false |
+| price           | integer    | null: false |
+| delivery        | string     | null: false |
+| status          | string     | null: false |
+| delivery_fee    | string     | null: false |
+| shipping_origin | string     | null: false |
+| date_and_time   | string     | null: false |
+| category        | string     | null: false |
+| comments        | string     | null: false |
 
 ### Association
 
@@ -35,11 +43,11 @@
 
 ## commentsテーブル
 
-| Column   | Type       | Options     |
-| -------- | ---------- | ----------- |
-| users_id | references | null: false, foreign_key: true |
-| items_id | references | null: false, foreign_key: true |
-| text     | string     | null: false |
+| Column | Type       | Options     |
+| ------ | ---------- | ----------- |
+| users  | references | null: false, foreign_key: true |
+| items  | references | null: false, foreign_key: true |
+| text   | string     | null: false |
 
 ### Association
 
@@ -48,10 +56,10 @@
 
 ## buys テーブル
 
-| Column       | Type       | Options     |
-| --------     | ---------- | ----------- |
-| users_id     | references | null: false, foreign_key: true |
-| items_id     | references | null: false, foreign_key: true |
+| Column | Type       | Options     |
+| ------ | ---------- | ----------- |
+| users  | references | null: false, foreign_key: true |
+| items  | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -61,12 +69,15 @@
 
 ## delivery_address テーブル
 
-| address      | string  | null: false |
-| phone_number | integer | null: false |
-| postal_code  | integer | null: false |
-| fee          | integer | null: false |
-| area         | integer | null: false |
-| time         | integer | null: false |
+| Column          | Type   | Options     |
+| --------------- | ------ | ----------- |
+| postal_code     | string | null: false |
+| prefectures     | string | null: false |
+| address         | string | null: false |
+| phone_number    | string | null: false |
+| delivery_fee    | string | null: false |
+| shipping_origin | string | null: false |
+| date_and_time   | string | null: false |
 
 ### Association
 
