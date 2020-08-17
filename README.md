@@ -12,6 +12,7 @@
 | first_name           | string | null: false |
 | family_name_FURIGANA | string | null: false |
 | first_name_FURIGANA  | string | null: false |
+| birth_date           | date   | null: false |
 
 ### Association
 
@@ -28,6 +29,8 @@
 | text            | text       | null: false |
 | price           | integer    | null: false |
 | comments        | text       | null: false |
+| delivery_fee    | string     | null: false |
+| shipping_origin | string     | null: false |
 
 ### Association
 
@@ -67,9 +70,9 @@
 | buy             | references | null: false, foreign_key: true |
 | postal_code     | string | null: false |
 | address         | string | null: false |
+| city            | string | null: false |
+| house number    | string | null: false |
 | phone_number    | string | null: false |
-| delivery_fee    | string | null: false |
-| shipping_origin | string | null: false |
 | date_and_time   | string | null: false |
 
 ### Association
