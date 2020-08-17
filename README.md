@@ -12,7 +12,6 @@
 | first_name           | string | null: false |
 | family_name_FURIGANA | string | null: false |
 | first_name_FURIGANA  | string | null: false |
-| birth_date           | date   | null: false |
 
 ### Association
 
@@ -23,18 +22,12 @@
 
 | Column          | Type       | Options     |
 | --------------- | ---------  | ----------- |
-| users           | references | null: false, foreign_key: true |
+| user            | references | null: false, foreign_key: true |
 | name            | string     | null: false |
 | image           | string     | null: false |
-| text            | string     | null: false |
+| text            | text       | null: false |
 | price           | integer    | null: false |
-| delivery        | string     | null: false |
-| status          | string     | null: false |
-| delivery_fee    | string     | null: false |
-| shipping_origin | string     | null: false |
-| date_and_time   | string     | null: false |
-| category        | string     | null: false |
-| comments        | string     | null: false |
+| comments        | text       | null: false |
 
 ### Association
 
@@ -45,9 +38,9 @@
 
 | Column | Type       | Options     |
 | ------ | ---------- | ----------- |
-| users  | references | null: false, foreign_key: true |
-| items  | references | null: false, foreign_key: true |
-| text   | string     | null: false |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
+| text   | text       | null: false |
 
 ### Association
 
@@ -58,8 +51,8 @@
 
 | Column | Type       | Options     |
 | ------ | ---------- | ----------- |
-| users  | references | null: false, foreign_key: true |
-| items  | references | null: false, foreign_key: true |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -71,8 +64,8 @@
 
 | Column          | Type   | Options     |
 | --------------- | ------ | ----------- |
+| buy             | references | null: false, foreign_key: true |
 | postal_code     | string | null: false |
-| prefectures     | string | null: false |
 | address         | string | null: false |
 | phone_number    | string | null: false |
 | delivery_fee    | string | null: false |
