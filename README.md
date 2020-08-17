@@ -26,8 +26,8 @@
 | user            | references | null: false, foreign_key: true |
 | name            | string     | null: false |
 | image           | string     | null: false |
-| text            | text       | null: false |
-| status          | text       | null: false |
+| text            | integer    | null: false |
+| status          | integer    | null: false |
 | price           | integer    | null: false |
 | comments        | text       | null: false |
 | delivery_fee    | integer    | null: false |
@@ -38,7 +38,7 @@
 ### Association
 
 - belongs_to :user
-- has_many :buys
+- has_one :buys
 
 ## commentsテーブル
 
@@ -73,8 +73,8 @@
 | buy             | references | null: false, foreign_key: true |
 | postal_code     | string  | null: false |
 | prefecture      | integer | null: false |
-| city            | string  |
-| house_number    | string  |
+| city            | string  | null: false |
+| house_number    | string  | null: false |
 | building_name   | string  |
 | phone_number    | string  | null: false |
 | date_and_time   | string  | null: false |
