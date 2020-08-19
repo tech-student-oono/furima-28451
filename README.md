@@ -76,7 +76,7 @@
 | city            | string  | null: false |
 | house_number    | string  | null: false |
 | building_name   | string  |
-| phone_number    | string  | null: false |
+| tle_number      | string  | null: false |
 | date_and_time   | string  | null: false |
 
 ### Association
