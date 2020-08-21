@@ -1,15 +1,9 @@
 class UsersController < ApplicationController
 
-  def new
-  end
-
-  def create
-  end
-
-  def update
-  end
-
-  def edit
+  def show
+    user = User.find(params[:id])
+    @nickname = user.nickname
+    @items = user.items
   end
 
 end
