@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2020_08_21_102922) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -79,7 +78,6 @@ ActiveRecord::Schema.define(version: 2020_08_21_102922) do
     t.date "birth_date"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["user_id"], name: "index_users_on_user_id"
   end
 
   add_foreign_key "buys", "items"
@@ -88,5 +86,4 @@ ActiveRecord::Schema.define(version: 2020_08_21_102922) do
   add_foreign_key "comments", "users"
   add_foreign_key "delivery_addresses", "buys"
   add_foreign_key "items", "users"
-  add_foreign_key "users", "users"
 end

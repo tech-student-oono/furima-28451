@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-
-  def show
-    user = User.find(params[:id])
-    @nickname = user.nickname
-    @items = user.items
+  def create
+    User.create(user_params)
   end
 
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :image, :text)
+  end
 end

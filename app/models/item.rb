@@ -1,4 +1,4 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_one :buys
+  has_one :buy
 end
