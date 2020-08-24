@@ -47,16 +47,15 @@ ActiveRecord::Schema.define(version: 2020_08_21_102922) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "name", null: false
-    t.string "image", null: false
-    t.integer "text", null: false
-    t.integer "status", null: false
-    t.integer "price", null: false
-    t.text "comments", null: false
-    t.integer "delivery_fee", null: false
-    t.integer "shipping_origin", null: false
-    t.integer "date_and_time", null: false
-    t.integer "category", null: false
+    t.string "item_image", null: false
+    t.string "item_name", null: false
+    t.text "item_info", null: false
+    t.integer "item_category", null: false
+    t.integer "item_sales_status", null: false
+    t.integer "shipping_fee_status", null: false
+    t.integer "prefecture", null: false
+    t.integer "scheduled_delivery", null: false
+    t.integer "item_price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
