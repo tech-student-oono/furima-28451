@@ -50,12 +50,12 @@ ActiveRecord::Schema.define(version: 2020_08_21_102922) do
     t.string "item_image", null: false
     t.string "item_name", null: false
     t.text "item_info", null: false
+    t.integer "item_price", null: false
     t.integer "category_id", null: false
     t.integer "status_id", null: false
     t.integer "fee_id", null: false
     t.integer "prefecture_id", null: false
     t.integer "scheduled_id", null: false
-    t.integer "item_price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
