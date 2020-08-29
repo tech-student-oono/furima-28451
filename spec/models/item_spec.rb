@@ -6,35 +6,27 @@ RSpec.describe Item, type: :model do
   describe '商品の出品' do
     context "商品が出品できる場合" do
       it "商品画像が存在していれば登録できること" do
-        @item.image = nil
         expect(@item).to be_valid
       end
       it "商品名が存在していれば登録できること" do
-        @item.name = nil
         expect(@item).to be_valid
       end
       it "カテゴリーが存在していれば登録できること" do
-        @item.category = nil
         expect(@item).to be_valid
       end
       it "商品の状態が存在していれば登録できること" do
-        @item.status = nil
         expect(@item).to be_valid
       end
       it "配送料の負担が存在していれば登録できること" do
-        @item.fee = nil
         expect(@item).to be_valid
       end
       it "発送元の地域が存在していれば登録できること" do
-        @item.prefecture = nil
         expect(@item).to be_valid
       end
       it "発送までの日数が存在していれば登録できること" do
-        @item.scheduled = nil
         expect(@item).to be_valid
       end
       it "価格が存在していれば登録できること" do
-        @item.price = nil
         expect(@item).to be_valid
       end
       it "価格の範囲が、¥300以上なら登録できること" do
