@@ -1,10 +1,10 @@
-window.addEventListener('load', function(){
-  $("#item_price").on('input', function(){
-    let price = $("#item_price").val();
+$(function(){
+  $("#item-price").on('keyup', function(){
+    let price = $("#item-price").val();
     if( 300 <= price && price <= 9999999) {
-    let tax = Math.floor(price / 10);
-    let profit = (price - tax);
-    $("#add-tax-price").text(tax);
+    let fee = Math.floor(price / 10);
+    let profit = (price - fee);
+    $("#add-tax-price").text(fee);
     $("#profit").text(profit);
     }else{
     $("#add-tax-price").text('');
