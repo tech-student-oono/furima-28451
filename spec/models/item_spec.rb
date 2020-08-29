@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# テストコード記述
 RSpec.describe Item, type: :model do
 
   describe '商品の出品' do
