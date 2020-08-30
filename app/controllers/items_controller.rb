@@ -1,9 +1,8 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show]
 
-
   def index
-    @items = Item.all
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
@@ -11,27 +10,21 @@ class ItemsController < ApplicationController
   end
 
   def create
-  end
-
-  def destroy
-    item = Item.find(params[:id])
-    item.destroy
-  end
-
-  def edit
-  end
-
-  def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-  end
-
-  def show
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path(@item)
+    else
+      render :new
+    end
   end
 
   private
 
-  def set_item
-    @item = Item.find(params[:id])
+  def item_params
+    params.require(:item).permit(:item_image, :item_name, :item_info, :item_price, :category_id, :status_id, :fee_id, :prefecture_id, :scheduled_id).merge(user_id: current_user.id)
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
   end
 end
