@@ -2,6 +2,10 @@ require 'rails_helper'
 
 # 出品ができる場合のコードも作る
 RSpec.describe Item, type: :model do
+  describe '#create' do
+    before do
+      @item = FactoryBot.build(:item)
+    end
 
   describe '商品の出品' do
     context "商品が出品できる場合" do
