@@ -1,10 +1,10 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one :buy
-  has_one_attached :item_image
+  has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  validates :item_image, :item_name, :item_info, :item_price, :category_id, :status_id, :fee_id, :prefecture_id, :scheduled_id, presence: true
+  validates :image, :item_name, :item_info, :item_price, :category_id, :status_id, :fee_id, :prefecture_id, :scheduled_id, presence: true
 
   validates :category_id, :status_id, :fee_id, :scheduled_id, numericality: { other_than: 1 }
 
