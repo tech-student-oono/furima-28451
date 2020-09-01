@@ -3,6 +3,11 @@ class Item < ApplicationRecord
   has_one :buy
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :status
+  belongs_to_active_hash :fee
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :scheduled
 
   validates :image, :item_name, :item_info, :item_price, :category_id, :status_id, :fee_id, :prefecture_id, :scheduled_id, presence: true
 
