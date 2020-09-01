@@ -18,6 +18,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def show
+  end
+
   private
 
   def item_params
@@ -26,5 +32,9 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
+  end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
   end
 end
