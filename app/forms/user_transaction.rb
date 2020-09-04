@@ -1,4 +1,4 @@
-class ItemTransaction
+class UserTransaction
 
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture, :city, :house_number, :building_name, :tle_number, :user_id, :item_id
