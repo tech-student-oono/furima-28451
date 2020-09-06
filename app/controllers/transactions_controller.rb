@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
 
   def index
-    @transaction = UserTransaction.new
+    @item = Item.find(params[:format])
   end
 
   def new
@@ -23,10 +23,11 @@ class TransactionsController < ApplicationController
 
   def transaction_params
    #「住所」「カード情報」のキーも追加
-   params.require(:item_transaction).permit(:token, :postal_code, :prefecture, :city, :house_number, :building_name, :tle_number).merge(user_id: current_user.id, item_id: item.id)
+   params.require(:user_transaction).permit(:token, :postal_code, :prefecture, :city, :house_number, :building_name, :tle_number).merge(user_id: current_user.id)
   end
 
   def pay_item
+    @item = Item.find(params[:format])
     Payjp.api_key = "sk_test_aec3073dee408e1dea803b7c"  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: order_params[:price],  # 商品の値段
