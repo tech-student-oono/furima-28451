@@ -1,15 +1,15 @@
 class TransactionsController < ApplicationController
-
   def index
-    @transaction = UserTransaction.new
+    @item = Item.find(params[:format])
   end
 
   def new
     @transaction = UserTransaction.new
+    @item = Item.find(params[:format])
   end
 
   def create
-    @transaction = UserTransaction.new(transaction_params[:id])
+    @transaction = UserTransaction.new(price: transaction_params[:price])
     if @transaction.valid?
       pay_item
       @transaction.save
@@ -22,15 +22,15 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-   #「住所」「カード情報」のキーも追加
-   params.require(:item_transaction).permit(:token, :postal_code, :prefecture, :city, :house_number, :building_name, :tle_number).merge(user_id: current_user.id, item_id: item.id)
+    params.require(:user_transaction).permit(:price, :token, :postal_code, :prefecture, :city, :house_number, :building_name, :tle_number,)
   end
 
   def pay_item
+    @item = Item.find(params[:format])
     Payjp.api_key = "sk_test_aec3073dee408e1dea803b7c"  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
-      amount: order_params[:price],  # 商品の値段
-      card: order_params[:token],    # カードトークン
+      amount: transaction_params[:price],  # 商品の値段
+      card: transaction_params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類(日本円)
     )
   end

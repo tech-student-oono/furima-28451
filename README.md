@@ -19,7 +19,7 @@
 ### Association
 
 - has_many :items
-- has_many :buys
+- has_many :transactions
 
 ## items テーブル
 
@@ -39,7 +39,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :buys
+- has_one :transactions
 
 ## commentsテーブル
 
@@ -54,7 +54,7 @@
 - belongs_to :user
 - belongs_to :item
 
-## buys テーブル
+## transactions テーブル
 
 | Column | Type       | Options     |
 | ------ | ---------- | ----------- |
@@ -71,7 +71,7 @@
 
 | Column          | Type    | Options     |
 | --------------- | ------- | ----------- |
-| buy             | references | null: false, foreign_key: true |
+| transaction     | references | null: false, foreign_key: true |
 | postal_code     | string  | null: false |
 | prefecture      | integer | null: false |
 | city            | string  | null: false |
@@ -82,4 +82,4 @@
 
 ### Association
 
-- belongs_to :buy
+- belongs_to :transaction
