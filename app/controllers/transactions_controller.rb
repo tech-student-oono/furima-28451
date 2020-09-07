@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = UserTransaction.new(transaction_params[:id])
+    @transaction = UserTransaction.new(transaction_params)
     if @transaction.valid?
       pay_item
       @transaction.save
@@ -27,11 +27,10 @@ class TransactionsController < ApplicationController
   end
 
   def pay_item
-    @item = Item.find(params[:format])
     Payjp.api_key = "sk_test_aec3073dee408e1dea803b7c"  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
-      amount: order_params[:price],  # 商品の値段
-      card: order_params[:token],    # カードトークン
+      # amount: transaction_params[:item_price],  # 商品の値段
+      card: transaction_params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類(日本円)
     )
   end
