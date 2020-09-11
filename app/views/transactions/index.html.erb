@@ -67,7 +67,7 @@
           <label class="form-text">セキュリティコード</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :cvc,class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
+        <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
       </div>
     </div>
     <%# /カード情報の入力 %>
@@ -102,7 +102,7 @@
           <label class="form-text">番地</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :house_number, class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
+        <%= f.text_field :addresses, class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -116,7 +116,7 @@
           <label class="form-text">電話番号</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :tle_number, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
+        <%= f.text_field :phone_number, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
       </div>
     </div>
     <div class='buy-btn'>

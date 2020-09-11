@@ -1,13 +1,11 @@
 class UserTransaction
-
   include ActiveModel::Model
-  attr_accessor :token, :user_id, :postal_code, :prefecture, :city, :house_number, :building_name, :tle_number
+  attr_accessor :token, :item_price, :user_id, :item_id, :postal_code, :prefecture_id, :city, :addresses, :building_name, :phone_number
 
   def save
-    user = User.create(name: name, nickname: nickname)
     # カード決済の情報を保存
-    Transaction.create(:token, user_id: user.id)
+    Transaction.create(token: token, item_price: item_price, user_id: user.id, item_id: item.id)
     # 住所の情報を保存
-    Address.create(postal_code: postal_code, prefecture: prefecture, city: city, house_number: house_number, building_name: building_name, tle_number: tle_number, user_id: user.id)
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, addresses: addresses, building_name: building_name, phone_number: phone_number, user_id: user.id)
   end
 end
