@@ -1,8 +1,11 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
+  # before_action :move_to_session, except: [:index]
+
   def index
-    @user = User.find(params[:format])
-    @item = Item.find(params[:format])
+    @transaction = UserTransaction.new
+    @item = Item.find(params[:item_id])
+    @transactions = @item.transactions.includes(:user)
   end
 
   def new
@@ -10,13 +13,13 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    binding.pry
     @transaction = UserTransaction.new(transaction_params)
     if @transaction.valid?
       pay_item
       @transaction.save
       return redirect_to root_path(@item)
     else
+      @transactions = @item.transactions.includes(:user)
       render :index
     end
   end
@@ -25,7 +28,7 @@ class TransactionsController < ApplicationController
 
   def transaction_params
     # 「住所」「カード情報」のキーも追加
-    params.permit(:token, :postal_code, :prefecture_id, :city, :addresses, :building_name, :phone_number).merge(user_id: current_user.id)
+    params.permit(:token, :item_id, :postal_code, :prefecture_id, :city, :addresses, :building_name, :phone_number).merge(user_id: current_user.id)
   end
 
   def pay_item
@@ -36,4 +39,13 @@ class TransactionsController < ApplicationController
       currency:'jpy'                 # 通貨の種類(日本円)
     )
   end
+
+  # def move_to_session
+    # if user_signed_in? && current_user.id != @item.user_id
+      # redirect_to root_path
+    # else
+      # redirect_to user_session_path
+    # end
+  # end
+
 end
