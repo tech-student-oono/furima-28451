@@ -1,11 +1,11 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :move_to_session, except: [:index]
+  before_action :move_to_index, only: :index
 
   def index
     @transaction = UserTransaction.new
     @item = Item.find(params[:item_id])
-    @transactions = @item.transactions.includes(:user)
+    @items = Item.includes(:user)
   end
 
   def new
@@ -19,7 +19,7 @@ class TransactionsController < ApplicationController
       @transaction.save
       return redirect_to root_path(@item)
     else
-      @transactions = @item.transactions.includes(:user)
+      @items = Item.includes(:user)
       render :index
     end
   end
@@ -40,12 +40,11 @@ class TransactionsController < ApplicationController
     )
   end
 
-  # def move_to_session
-    # if user_signed_in? && current_user.id != @item.user_id
-      # redirect_to root_path
-    # else
-      # redirect_to user_session_path
-    # end
-  # end
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
 
 end
