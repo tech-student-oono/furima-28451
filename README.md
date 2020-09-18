@@ -19,7 +19,7 @@
 ### Association
 
 - has_many :items
-- has_many :transactions
+- has_many :orders
 - has_one :domicile
 
 ## items テーブル
@@ -40,7 +40,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :transactions
+- has_one :orders
 
 ## commentsテーブル
 
@@ -55,7 +55,7 @@
 - belongs_to :user
 - belongs_to :item
 
-## transactions テーブル
+## orders テーブル
 
 | Column | Type       | Options     |
 | ------ | ---------- | ----------- |
