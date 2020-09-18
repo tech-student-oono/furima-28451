@@ -20,7 +20,7 @@
 
 - has_many :items
 - has_many :transactions
-- has_one :address
+- has_one :domicile
 
 ## items テーブル
 
@@ -66,9 +66,9 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one : address
+- has_one : domicile
 
-## address テーブル
+## domicile テーブル
 
 | Column          | Type    | Options     |
 | --------------- | ------- | ----------- |
