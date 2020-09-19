@@ -10,6 +10,6 @@ class UserOrder
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    Domicile.create(order_id: order.id, postal_code: postal_code, prefecture_id: prefecture_id, city: city, addresses: addresses, building_name: building_name, phone_number: phone_number)
+    domicile = Domicile.create(order_id: order.id, postal_code: postal_code, prefecture_id: prefecture_id, city: city, addresses: addresses, building_name: building_name, phone_number: phone_number)
   end
 end

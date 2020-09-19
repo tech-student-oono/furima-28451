@@ -128,36 +128,38 @@
       <% else %>
         <%= link_to '新規投稿商品', "#", id: 'charge-form', class: "subtitle" %>
       <% end %>
+
     <ul class='item-lists'>
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <% @items.each do |item| %>
-      <li class='list'>
-        <div class='item-img-content'>
-          <%= link_to item_path(item) do %>
-            <%= image_tag item.image, class: "item-img" %>
-          <% end %>
+        <li class='list'>
+          <div class='item-img-content'>
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.image, class: "item-img" %>
+            <% end %>
 
-          <%# <% if @order.present? %> 
-            <%# <div class='sold-out'> %>
-              <%# <span>Sold Out!!</span> %>
-            <%# </div> %>
-          <%# <% end %> 
+            <% if item.order.present? %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+            <% end %>
 
-        </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%= item.item_name %>
-          </h3>
-          <div class='item-price'>
-            <span><%= item.item_price %>円<br>(税込み)</span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
+          </div>
+
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= item.item_name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= item.item_price %>円<br>(税込み)</span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
             </div>
           </div>
-        </div>
-        <% end %>
-      </li>
+        </li>
+      <% end %>
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
     </ul>
   </div>
