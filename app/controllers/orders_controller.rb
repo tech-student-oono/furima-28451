@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     if @order.valid?
       pay_item
       @order.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render 'index'
     end
@@ -32,18 +32,16 @@ class OrdersController < ApplicationController
 
   def pay_item
     @item = Item.find(params[:item_id])
-    Payjp.api_key = 'sk_test_0c9a909a9b03ef70896b5e04' # PAY.JPテスト秘密鍵
+    Payjp.api_key = 'sk_test_0c9a909a9b03ef70896b5e04'
     Payjp::Charge.create(
-      amount: @item.item_price,  # 商品の値段
-      card: order_params[:token],    # カードトークン
-      currency:'jpy'                 # 通貨の種類(日本円)
+      amount: @item.item_price,
+      card: order_params[:token],
+      currency: 'jpy'
     )
   end
 
   def move_to_index
     @item = Item.find(params[:item_id])
-    if @item.order.present? || current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.order.present? || current_user.id == @item.user_id
   end
 end
