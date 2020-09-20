@@ -7,19 +7,20 @@ RSpec.describe Item, type: :model do
       @item = FactoryBot.build(:item)
     end
 
-  describe '商品の出品' do
-    context "商品が出品できる場合" do
-      it '全て正常' do
-        expect(@item.valid?).to eq true
-      end
-      it "価格の範囲が、¥300以上なら登録できること" do
-        @item.price = 300
-        @item.price_confirmation = 300
-        expect(@item).to be_valid
-      end
-      it "価格の範囲が、¥¥9,999,999以下なら登録できること" do
-        @item.price = 9999999
-        expect(@item).to be_valid
+    describe '商品の出品' do
+      context "商品が出品できる場合" do
+        it '全て正常' do
+          expect(@item.valid?).to eq true
+        end
+        it "価格の範囲が、¥300以上なら登録できること" do
+          @item.price = 300
+          @item.price_confirmation = 300
+          expect(@item).to be_valid
+        end
+        it "価格の範囲が、¥¥9,999,999以下なら登録できること" do
+          @item.price = 9999999
+          expect(@item).to be_valid
+        end
       end
     end
 
