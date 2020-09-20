@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item, only: [:index, :create, :pry_item, :move_to_index]
   before_action :move_to_index, only: :index
 
   def index
     @order = UserOrder.new
-    @item = Item.find(params[:item_id])
     @items = Item.includes(:user)
   end
 
@@ -13,7 +13,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = UserOrder.new(order_params)
     if @order.valid?
       pay_item
@@ -31,7 +30,6 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
     Payjp.api_key = 'sk_test_0c9a909a9b03ef70896b5e04'
     Payjp::Charge.create(
       amount: @item.item_price,
@@ -40,8 +38,11 @@ class OrdersController < ApplicationController
     )
   end
 
-  def move_to_index
+  def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def move_to_index
     redirect_to root_path if @item.order.present? || current_user.id == @item.user_id
   end
 end

@@ -3,7 +3,7 @@ class UserOrder
   attr_accessor :token, :domicile_id, :order_id, :user_id, :item_id, :postal_code, :prefecture_id, :city, :addresses, :building_name, :phone_number
 
   with_options presence: true do
-    validates :token, :postal_code, :prefecture_id, :city, :addresses, :phone_number, presence: true
+    validates :token, :postal_code, :prefecture_id, :city, :addresses, :phone_number
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
   end
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
