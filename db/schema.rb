@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_065141) do
+ActiveRecord::Schema.define(version: 2020_09_18_060829) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,15 +33,6 @@ ActiveRecord::Schema.define(version: 2020_08_31_065141) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "buys", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "item_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_buys_on_item_id"
-    t.index ["user_id"], name: "index_buys_on_user_id"
-  end
-
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
@@ -52,18 +43,17 @@ ActiveRecord::Schema.define(version: 2020_08_31_065141) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "delivery_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "buy_id", null: false
-    t.string "postal_code", null: false
-    t.integer "prefecture", null: false
+  create_table "domiciles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "postal_code", null: false
+    t.integer "prefecture_id", null: false
     t.string "city", null: false
-    t.string "house_number", null: false
-    t.string "building_name", null: false
-    t.string "tle_number", null: false
-    t.string "date_and_time", null: false
+    t.string "addresses", null: false
+    t.string "building_name"
+    t.bigint "phone_number", null: false
+    t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["buy_id"], name: "index_delivery_addresses_on_buy_id"
+    t.index ["order_id"], name: "index_domiciles_on_order_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -79,6 +69,15 @@ ActiveRecord::Schema.define(version: 2020_08_31_065141) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_orders_on_item_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -100,10 +99,9 @@ ActiveRecord::Schema.define(version: 2020_08_31_065141) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "buys", "items"
-  add_foreign_key "buys", "users"
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
-  add_foreign_key "delivery_addresses", "buys"
   add_foreign_key "items", "users"
+  add_foreign_key "orders", "items"
+  add_foreign_key "orders", "users"
 end
