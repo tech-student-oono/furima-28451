@@ -11,7 +11,7 @@ class Item < ApplicationRecord
 
   validates :image, :item_name, :item_info, :item_price, :category_id, :status_id, :fee_id, :prefecture_id, :scheduled_id, presence: true
 
-  validates :category_id, :status_id, :fee_id, :scheduled_id, numericality: { other_than: 1 }
+  validates :category_id, :status_id, :fee_id, :prefecture_id, :scheduled_id, numericality: { other_than: 1 }
 
-  validates :item_price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range' }
+  validates :item_price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: "は決められた範囲内で入力してください" }
 end
